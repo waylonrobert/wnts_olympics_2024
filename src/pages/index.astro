@@ -28,10 +28,11 @@ const airtableDataFinal = await fetchAirtable(filterFormulaFinal, sortParameters
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(advanced); //used to display tz
-// dayjs.tz.guess();
+dayjs.tz.guess();
 
-const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+// const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 // console.log(dayjs.tz.guess());
+const timeZone = dayjs.tz.guess()
 
 const dateTimeFormat = 'ddd M/DD/YY [at] h:mma z';
 
@@ -47,7 +48,7 @@ const dateTimeFormat = 'ddd M/DD/YY [at] h:mma z';
           key={record.id}
           matchVisitor={record.fields.Visitor}
           matchHome={record.fields.Home}
-          date={dayjs(record.fields.Date).tz(userTimezone).format(dateTimeFormat)}
+          date={dayjs(record.fields.Date).tz(timeZone).format(dateTimeFormat)}
           network={record.fields["Broadcast Network"].join('<br />')}
         />
         <div>
@@ -61,7 +62,7 @@ const dateTimeFormat = 'ddd M/DD/YY [at] h:mma z';
             key={record.id}
             matchVisitor={record.fields.Visitor}
             matchHome={record.fields.Home}
-            date={dayjs(record.fields.Date).tz(userTimezone).format(dateTimeFormat)}
+            date={dayjs(record.fields.Date).tz(timeZone).format(dateTimeFormat)}
             network={record.fields["Broadcast Network"].join('<br />')}
           />
         ))}
@@ -73,7 +74,7 @@ const dateTimeFormat = 'ddd M/DD/YY [at] h:mma z';
               key={record.id}
               matchVisitor={record.fields.Visitor}
               matchHome={record.fields.Home}
-              date={dayjs(record.fields.Date).tz(userTimezone).format(dateTimeFormat)}
+              date={dayjs(record.fields.Date).tz(timeZone).format(dateTimeFormat)}
               network={record.fields["Broadcast Network"].join('<br />')}
             />
           ))}
@@ -85,7 +86,7 @@ const dateTimeFormat = 'ddd M/DD/YY [at] h:mma z';
             key={record.id}
             matchVisitor={record.fields.Visitor}
             matchHome={record.fields.Home}
-            date={dayjs(record.fields.Date).tz(userTimezone).format(dateTimeFormat)}
+            date={dayjs(record.fields.Date).tz(timeZone).format(dateTimeFormat)}
             network={record.fields["Broadcast Network"].join('<br />')}
           />
         ))}
@@ -97,7 +98,7 @@ const dateTimeFormat = 'ddd M/DD/YY [at] h:mma z';
             key={record.id}
             matchVisitor={record.fields.Visitor}
             matchHome={record.fields.Home}
-            date={dayjs(record.fields.Date).tz(userTimezone).format(dateTimeFormat)}
+            date={dayjs(record.fields.Date).tz(timeZone).format(dateTimeFormat)}
             network={record.fields["Broadcast Network"].join('<br />')}
           />
         ))}
@@ -109,7 +110,7 @@ const dateTimeFormat = 'ddd M/DD/YY [at] h:mma z';
             key={record.id}
             matchVisitor={record.fields.Visitor}
             matchHome={record.fields.Home}
-            date={dayjs(record.fields.Date).tz(userTimezone).format(dateTimeFormat)}
+            date={dayjs(record.fields.Date).tz(timeZone).format(dateTimeFormat)}
             network={record.fields["Broadcast Network"].join('<br />')}
           />
         ))}
@@ -121,7 +122,7 @@ const dateTimeFormat = 'ddd M/DD/YY [at] h:mma z';
             key={record.id}
             matchVisitor={record.fields.Visitor}
             matchHome={record.fields.Home}
-            date={dayjs(record.fields.Date).tz(userTimezone).format(dateTimeFormat)}
+            date={dayjs(record.fields.Date).tz(timeZone).format(dateTimeFormat)}
             network={record.fields["Broadcast Network"].join('<br />')}
           />
         ))}
