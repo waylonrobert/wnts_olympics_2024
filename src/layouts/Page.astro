@@ -1,0 +1,21 @@
+---
+import '../styles/tailwind.css';
+import '../styles/fonts.css';
+const { title = "Page" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    <hr>
+    <footer>
+      <small>Made with ❤️ by <a href="https://waylonbaumgarnder.com?ref=paris2024" title="Waylon" target="_blank">Waylon</a></small>  
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,129 @@
+---
+import Page from '../layouts/Page.astro';
+import Card from '../components/Card.astro';
+import { fetchAirtable } from '../utils/fetchAirtable';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+import advanced from 'dayjs/plugin/advancedFormat';
+import Heading from '../components/Heading.astro';
+
+const filterFormulaA = "Group='A'";
+const filterFormulaB = "Group='B'";
+const filterFormulaC = "Group='C'";
+const filterFormulaQuarter = "Round='Quarterfinal'";
+const filterFormulaSemi = "Round='Semi-final'";
+const filterFormulaBronze = "Round='Bronze'";
+const filterFormulaFinal = "Round='Final'";
+const sortParameters = ['Date'];
+
+const airtableDataA = await fetchAirtable(filterFormulaA, sortParameters);
+const airtableDataB = await fetchAirtable(filterFormulaB, sortParameters);
+const airtableDataC = await fetchAirtable(filterFormulaC, sortParameters);
+const airtableDataQuarter = await fetchAirtable(filterFormulaQuarter, sortParameters);
+const airtableDataSemi = await fetchAirtable(filterFormulaSemi, sortParameters);
+const airtableDataBronze = await fetchAirtable(filterFormulaBronze, sortParameters);
+const airtableDataFinal = await fetchAirtable(filterFormulaFinal, sortParameters);
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.extend(advanced); //used to display tz
+// dayjs.tz.guess();
+
+const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+// console.log(dayjs.tz.guess());
+
+const dateTimeFormat = 'ddd M/DD/YY [at] h:mma z';
+
+---
+
+<Page title="Paris 2024 Olympic Games — Women's Soccer Schedule">
+    <h1 class="text-3xl font-bold text-center mt-8">Paris 2024 Olympic Games &mdash; Women's Soccer Schedule</h1>
+    <Heading title="Group Stage" />
+    <h3>Group A</h3>
+    <div class="flex flex-wrap justify-center">
+      {airtableDataA.map(record => (
+        <Card 
+          key={record.id}
+          matchVisitor={record.fields.Visitor}
+          matchHome={record.fields.Home}
+          date={dayjs(record.fields.Date).tz(userTimezone).format(dateTimeFormat)}
+          network={record.fields["Broadcast Network"].join('<br />')}
+        />
+        <div>
+    </div>
+      ))}
+    </div>
+    <h3>Group B</h3>
+    <div class="flex flex-wrap justify-center">
+        {airtableDataB.map(record => (
+          <Card 
+            key={record.id}
+            matchVisitor={record.fields.Visitor}
+            matchHome={record.fields.Home}
+            date={dayjs(record.fields.Date).tz(userTimezone).format(dateTimeFormat)}
+            network={record.fields["Broadcast Network"].join('<br />')}
+          />
+        ))}
+      </div>
+      <h3>Group C</h3>
+      <div class="flex flex-wrap justify-center">
+          {airtableDataC.map(record => (
+            <Card 
+              key={record.id}
+              matchVisitor={record.fields.Visitor}
+              matchHome={record.fields.Home}
+              date={dayjs(record.fields.Date).tz(userTimezone).format(dateTimeFormat)}
+              network={record.fields["Broadcast Network"].join('<br />')}
+            />
+          ))}
+        </div>
+    <Heading title="Quarterfinal Stage" />
+    <div class="flex flex-wrap justify-center">
+        {airtableDataQuarter.map(record => (
+          <Card 
+            key={record.id}
+            matchVisitor={record.fields.Visitor}
+            matchHome={record.fields.Home}
+            date={dayjs(record.fields.Date).tz(userTimezone).format(dateTimeFormat)}
+            network={record.fields["Broadcast Network"].join('<br />')}
+          />
+        ))}
+      </div>
+    <Heading title="Semi-Final Stage" />
+    <div class="flex flex-wrap justify-center">
+        {airtableDataSemi.map(record => (
+          <Card 
+            key={record.id}
+            matchVisitor={record.fields.Visitor}
+            matchHome={record.fields.Home}
+            date={dayjs(record.fields.Date).tz(userTimezone).format(dateTimeFormat)}
+            network={record.fields["Broadcast Network"].join('<br />')}
+          />
+        ))}
+      </div>
+      <Heading title="Bronze Stage" />
+      <div class="flex flex-wrap justify-center">
+        {airtableDataBronze.map(record => (
+          <Card 
+            key={record.id}
+            matchVisitor={record.fields.Visitor}
+            matchHome={record.fields.Home}
+            date={dayjs(record.fields.Date).tz(userTimezone).format(dateTimeFormat)}
+            network={record.fields["Broadcast Network"].join('<br />')}
+          />
+        ))}
+      </div>
+    <Heading title="Final Stage" />
+    <div class="flex flex-wrap justify-center">
+        {airtableDataFinal.map(record => (
+          <Card 
+            key={record.id}
+            matchVisitor={record.fields.Visitor}
+            matchHome={record.fields.Home}
+            date={dayjs(record.fields.Date).tz(userTimezone).format(dateTimeFormat)}
+            network={record.fields["Broadcast Network"].join('<br />')}
+          />
+        ))}
+      </div>
+</Page>

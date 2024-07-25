@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* You can also add additional custom styles here */
+body {
+    /* background-color:rgb(213 196 108 / 50%); */
+    /* background-color: rgb(236 168 203 / 50%); */
+    /* font-family: 'Work Sans', sans-serif; */
+    font-family: 'DM Sans', sans-serif;
+  }
+
+h3 {
+    @apply text-2xl font-bold m-8;
+    text-align: center;
+}
+
+hr {
+   @apply border-t border-yellow-600 flex-grow m-3; 
+}
+
+footer {
+    @apply m-8 p-8 text-center;
+}
