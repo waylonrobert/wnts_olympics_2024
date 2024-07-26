@@ -48,7 +48,7 @@ const dateTimeFormat = 'ddd M/DD/YY [at] h:mma z';
           key={record.id}
           matchVisitor={record.fields.Visitor}
           matchHome={record.fields.Home}
-          date={dayjs(record.fields.Date).tz().format(dateTimeFormat)}
+          date={dayjs(record.fields.Date).local().tz(dayjs.tz.guess()).format(dateTimeFormat)}
           network={record.fields["Broadcast Network"].join('<br />')}
         />
         <div>
