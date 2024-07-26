@@ -36,6 +36,12 @@ const timeZone = 'America/Los_Angeles';
 
 const dateTimeFormat = 'ddd M/DD/YY [at] h:mma z';
 
+const dateTimeFormatT = new Intl.DateTimeFormat('en-US');
+const resolvedOptions = dateTimeFormatT.resolvedOptions();
+const timeZoneT = resolvedOptions.timeZone;
+
+console.log(timeZoneT); // 'Asia/Calcutta'
+
 ---
 
 <Page title="Paris 2024 Olympic Games — Women's Soccer Schedule">
