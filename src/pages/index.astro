@@ -32,15 +32,9 @@ dayjs.tz.guess();
 
 // const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 // console.log(dayjs.tz.guess());
-const timeZone = 'America/Los_Angeles';
+let timeZone = 'America/Los_Angeles';
 
 const dateTimeFormat = 'ddd M/DD/YY [at] h:mma z';
-
-const dateTimeFormatT = new Intl.DateTimeFormat('en-US');
-const resolvedOptions = dateTimeFormatT.resolvedOptions();
-const timeZoneT = resolvedOptions.timeZone;
-
-console.log(timeZoneT); // 'Asia/Calcutta'
 
 ---
 
@@ -54,7 +48,7 @@ console.log(timeZoneT); // 'Asia/Calcutta'
           key={record.id}
           matchVisitor={record.fields.Visitor}
           matchHome={record.fields.Home}
-          date={dayjs(record.fields.Date).local().tz(dayjs.tz.guess()).format(dateTimeFormat)}
+          date={dayjs(record.fields.Date).tz(dayjs.tz.guess()).format(dateTimeFormat)}
           network={record.fields["Broadcast Network"].join('<br />')}
         />
         <div>
